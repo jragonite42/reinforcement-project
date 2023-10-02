@@ -15,7 +15,7 @@ const initialState = {
   hungry: null,
   healthy: null,
   clean: null,
-  groomed: null
+  groomed: null,
 };
 
 const catReducer = createReducer(initialState, (builder) => {
@@ -38,8 +38,8 @@ const catReducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.groom, (state, action) => {
       state.groomed = action.payload.groom;
-    })
-})
+    });
+});
 
 export { fetchCat };
 

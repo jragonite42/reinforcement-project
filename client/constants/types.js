@@ -1,4 +1,4 @@
-export const FEED = 'FEED';
-export const HEAL = 'HEAL';
-export const CLEAN = 'CLEAN';
-export const GROOM = 'GROOM';
+export const SCORE = 'SCORE';
+export const PASS = 'PASS';
+export const FAIL = 'FAIL';
+export const SAVE = 'SAVE';
