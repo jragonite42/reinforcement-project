@@ -1,0 +1,14 @@
+@import './catimage.css';
+@import './moodiconcontainer.css';
+
+.catdisplay {
+  height: 0vh;
+  width: 100vw;
+}
+
+#bgimage {
+  position: absolute;
+  height: 150vh;
+  width: 150vw;
+  /* object-fit: cover; */
+}

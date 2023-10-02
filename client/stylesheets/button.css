@@ -1,0 +1,29 @@
+.button {
+  flex-basis: 1rem;
+  flex-shrink: 1;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  padding: 1rem;
+  opacity: 50%;
+}
+
+#feed {
+  background-image: url('../assets/images/feed.png');
+}
+
+#clean {
+  background-image: url('../assets/images/clean.png');
+}
+
+#groom {
+  background-image: url('../assets/images/groom.png');
+}
+
+#health {
+  background-image: url('../assets/images/health.png');
+}
+
+#log {
+  background-image: url('../assets/images/log.png');
+}
