@@ -4,7 +4,10 @@ import { useSelector, useDispatch } from 'react-redux';
 // reducers we use hwere
 
 const Dash = () => {
-  return <div> </div>;
+  <div>
+    <audio> </audio>
+    <form> </form>
+  </div>;
 };
 
 export default Dash;
