@@ -5,21 +5,24 @@ const userController = {}; //
 
 userController.create = async (req, res, next) => {
   try {
-    console.log('inside create middleware');
     const { email, name, password } = req.body;
+    const point = 0;
     if (!email || !name || !password) {
       return res.status(400).json('Missing values!');
     }
     const checkEmailExists = await User.findOne({ email });
+    console.log('checkEmailExists', checkEmailExists);
     if (!checkEmailExists) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
+      console.log('afterhashedPassword');
       const user = await User.create({
         email,
         name,
         password: hashedPassword,
-        totalPoints: 0,
+        // totalPoints: point,
       });
+
       res.locals.userId = user._id;
       return next();
     } else {
@@ -59,9 +62,13 @@ userController.verifyUser = async (req, res, next) => {
 
 userController.signOut = async (req, res, next) => {
   try {
-    res.clearCookie('ssid');
-
-    console.log('cookie cleared');
+    console.log(req.cookies);
+    if (req.cookies.SSID) {
+      res.clearCookie('SSID');
+      console.log('Cookie cleared');
+    } else {
+      console.log('Cookie not found');
+    }
     return next();
   } catch (e) {
     return next({

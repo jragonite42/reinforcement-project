@@ -9,4 +9,4 @@ const userSchema = new Schema({
   gameHistory: { type: Array }, //gameHistory = [ {wordsRight : [] , wordsWrong : []. score : num }, ... {} {} ] -- stretch feature
 });
 
-module.exports = mongoose.model('user', userSchema);
+module.exports = mongoose.model('User', userSchema);
