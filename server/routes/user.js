@@ -8,7 +8,7 @@ router.post(
   userController.create,
   cookieController.setSSIDCookie,
   (req, res) => {
-    console.log('in the final callback')
+    // console.log('in the final callback')
     // create cookies + sessions
     return res.status(200).json('User Created!');
   }
