@@ -20,7 +20,7 @@ userController.create = async (req, res, next) => {
         email,
         name,
         password: hashedPassword,
-        // totalPoints: point,
+        totalPoints: point,
       });
 
       res.locals.userId = user._id;
@@ -62,8 +62,8 @@ userController.verifyUser = async (req, res, next) => {
 
 userController.signOut = async (req, res, next) => {
   try {
-    console.log(req.cookies);
-    if (req.cookies.SSID) {
+    console.log(req.cookie);
+    if (req.cookie.SSID) {
       res.clearCookie('SSID');
       console.log('Cookie cleared');
     } else {
