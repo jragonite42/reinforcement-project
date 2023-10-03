@@ -12,7 +12,7 @@ const getData = createAsyncThunk('' /*whatever the url*/, async () => {});
   */
 const initialState = {
   name: 'Woobae',
-  score: 0,
+  score: 100,
   totalPoints: null,
   currentWord: null,
   userInput: null,
