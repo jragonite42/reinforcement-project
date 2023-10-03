@@ -1,16 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import CatDisplay from './CatDisplay.jsx';
-import NavBar from './NavBar';
+import NavBar from './Nav';
+import Dash from './Dash';
 
 const MainContainer = () => {
-
   return (
     <div>
-      <CatDisplay />
-      <NavBar />
+      <Nav />
+      <Dash />
     </div>
-  )
-}
+  );
+};
 
 export default MainContainer;
