@@ -3,3 +3,4 @@ export const PASS = 'PASS';
 export const FAIL = 'FAIL';
 export const SAVE = 'SAVE';
 export const NEWWORD = 'NEWWORD';
+export const GAME = 'GAME';

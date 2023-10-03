@@ -11,6 +11,7 @@ const getData = createAsyncThunk('' /*whatever the url*/, async () => {});
   gameHistory: { type: Array },
   */
 const initialState = {
+  game: false, // false: game is not running, true; game is running
   name: 'Woobae',
   score: 100,
   totalPoints: null,
@@ -22,8 +23,6 @@ const initialState = {
 const gameReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(actions.newWord, (state, action) => {
-      console.log('state.currentWord', state.currentWord);
-      console.log('action.payload.newWord', action.payload.newWord);
       state.currentWord = action.payload.newWord;
     })
     .addCase(actions.pass, (state, action) => {
@@ -35,6 +34,14 @@ const gameReducer = createReducer(initialState, (builder) => {
     .addCase(actions.save, (state, action) => {
       // add to game history but thats not implemented
       // post request to mongoodb with the *total* score?
+    })
+    .addCase(actions.changeGameStatus, (state, action) => {
+      state.game ? (state.game = false) : (state.game = true);
+    })
+    .addCase(actions.updateGuess, (state, action) => {
+      console.log('state.userInput:', state.userInput);
+      console.log('action.payload.newGuess:', action.payload.newGuess);
+      state.userInput = action.payload.newGuess;
     });
 });
 
