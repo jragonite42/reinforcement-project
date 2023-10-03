@@ -4,8 +4,8 @@ const path = require('path');
 module.exports = {
   devServer: {
     proxy: {
-      '/api': 'http://localhost:3000'
-    }
+      '/api': 'http://localhost:3000',
+    },
   },
   entry: path.join(__dirname, 'client/index.js'),
   output: {
@@ -21,10 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-            ],
+            presets: ['@babel/preset-env', '@babel/preset-react'],
           },
         },
       },
@@ -32,24 +29,20 @@ module.exports = {
         test: /.s?[ac]ss$/i,
         // test: /\.s?css/,
         exclude: /node_modules/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
+        use: ['style-loader', 'css-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
-            {
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: 'images', // Optional: specify the output path
-                },
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'images', // Optional: specify the output path
             },
+          },
         ],
-      }
+      },
     ],
   },
   plugins: [
@@ -58,9 +51,11 @@ module.exports = {
     }), // maybe a problem-child here
   ],
   resolve: {
-    extensions: [
-      '.js',
-      '.jsx',
-    ],
+    extensions: ['.js', '.jsx'],
+    fallback: {
+      path: false,
+      os: false,
+      crypto: false,
+    },
   },
 };

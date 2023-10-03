@@ -4,9 +4,8 @@ const bcrypt = require('bcrypt');
 const userController = {}; //
 
 userController.create = async (req, res, next) => {
-  //
   try {
-    console.log('inside create middleware')
+    console.log('inside create middleware');
     const { email, name, password } = req.body;
     if (!email || !name || !password) {
       return res.status(400).json('Missing values!');
@@ -15,7 +14,12 @@ userController.create = async (req, res, next) => {
     if (!checkEmailExists) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-      const user = await User.create({ email, name, password: hashedPassword });
+      const user = await User.create({
+        email,
+        name,
+        password: hashedPassword,
+        totalPoints: 0,
+      });
       res.locals.userId = user._id;
       return next();
     } else {
@@ -56,7 +60,7 @@ userController.verifyUser = async (req, res, next) => {
 userController.signOut = async (req, res, next) => {
   try {
     res.clearCookie('ssid');
-    
+
     console.log('cookie cleared');
     return next();
   } catch (e) {

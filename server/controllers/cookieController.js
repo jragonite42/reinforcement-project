@@ -2,7 +2,7 @@
 const cookieController = {
   /**
    * Set the user ID in an 'ssid' cookie.
-   * @param _req - Express Request object
+   * @param req - Express Request object
    * @param res - Express Response object
    * @param next - Next middleware function
    */
