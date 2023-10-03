@@ -7,8 +7,7 @@ const cookieController = {
    * @param next - Next middleware function
    */
   setSSIDCookie: (_req, res, next) => {
-    const { user_id } = res.locals;
-
+    const { userId } = res.locals;
     // Set the 'ssid' cookie for 12 hours
     res.cookie('ssid', userId, {
       maxAge: 12 * 60 * 60 * 1000,
@@ -21,4 +20,4 @@ const cookieController = {
   },
 };
 
-export { cookieController };
+module.exports = cookieController; //

@@ -8,8 +8,9 @@ router.post(
   userController.create,
   cookieController.setSSIDCookie,
   (req, res) => {
+    console.log('in the final callback')
     // create cookies + sessions
-    return res.status(200).send('User Created!');
+    return res.status(200).json('User Created!');
   }
 );
 
@@ -19,14 +20,14 @@ router.post(
   cookieController.setSSIDCookie,
   (req, res) => {
     // create cookies + sessions
-    return res.status(200).send('User Signed In!');
+    return res.status(200).json('User Signed In!');
   }
 );
 
 router.post('/signout', userController.signOut, (req, res) => {
   // delete the cookies + sessions
-  // return res.status(200).send('User Signed Out!');
-  return res.redirect('/signin');
+  return res.status(200).send('User Signed Out!');
+  // return res.redirect('/signin');
 });
 
 module.exports = router;
