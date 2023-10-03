@@ -5,9 +5,10 @@ const userController = {}; //
 
 userController.create = async (req, res, next) => {
   try {
+    console.log('inside create middleware');
     const { email, name, password } = req.body;
     if (!email || !name || !password) {
-      return res.sendStatus(400).sendJSON('Missing values!');
+      return res.status(400).json('Missing values!');
     }
     const checkEmailExists = await User.findOne({ email });
     if (!checkEmailExists) {
@@ -22,7 +23,7 @@ userController.create = async (req, res, next) => {
       res.locals.userId = user._id;
       return next();
     } else {
-      return res.sendStatus(400).sendJSON('Email already exists!');
+      return res.status(400).json('Email already exists!');
     }
   } catch (err) {
     return next({
@@ -34,32 +35,18 @@ userController.create = async (req, res, next) => {
 };
 
 userController.verifyUser = async (req, res, next) => {
-  //
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      return res.sendStatus(400).sendJSON('Missing values!');
+      res.status(400).json('Missing values!');
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
     const user = await User.findOne({ email });
-    if (!user) {
-      return res.sendStatus(400).sendJSON('Username or password is not found!');
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
+    if (!isPasswordMatch) {
+      return res.status(400).json('Invalid username or password');
     } else {
-      try {
-        if (user.password === hashedPassword) {
-          res.locals.userId = user._id;
-          return next();
-        } else {
-          return res.sendStatus(400).sendJSON('Password is incorrect!');
-        }
-      } catch {
-        return next({
-          log: 'An error was caught in userController.create', //
-          status: 404,
-          message: { err: 'An error occured while verifying your account' }, //
-        });
-      }
+      res.locals.userId = user._id;
+      return next();
     }
   } catch (err) {
     return next({
@@ -73,6 +60,8 @@ userController.verifyUser = async (req, res, next) => {
 userController.signOut = async (req, res, next) => {
   try {
     res.clearCookie('ssid');
+
+    console.log('cookie cleared');
     return next();
   } catch (e) {
     return next({
