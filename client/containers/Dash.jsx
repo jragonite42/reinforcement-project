@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 // import { fetchCat } from '../reducers/catReducer.js';
-// whatever reducers we use here
+// reducers we use hwere
 
-const Dash = () => {};
+const Dash = () => {
+  return <div> </div>;
+};
 
 export default Dash;

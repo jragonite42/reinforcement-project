@@ -1,8 +1,7 @@
 import * as actions from '../actions/actions.js';
 import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 
-//fetch word from dictionary API
-const getScore = createAsyncThunk('' /*whatever the url*/, async () => {});
+const getData = createAsyncThunk('' /*whatever the url*/, async () => {});
 
 /*
   email: { type: String, required: true },
@@ -11,10 +10,9 @@ const getScore = createAsyncThunk('' /*whatever the url*/, async () => {});
   totalPoints: { type: Number },
   gameHistory: { type: Array },
   */
-const intialState = {
-  name: null,
-  password: null,
-  score: null,
+const initialState = {
+  name: 'Woobae',
+  score: 0,
   totalPoints: null,
   currentWord: null,
   userInput: null,
@@ -23,6 +21,11 @@ const intialState = {
 
 const gameReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(actions.newWord, (state, action) => {
+      console.log('state.currentWord', state.currentWord);
+      console.log('action.payload.newWord', action.payload.newWord);
+      state.currentWord = action.payload.newWord;
+    })
     .addCase(actions.pass, (state, action) => {
       state.score++;
     })
@@ -31,8 +34,10 @@ const gameReducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.save, (state, action) => {
       // add to game history but thats not implemented
-      // push score into database?
+      // post request to mongoodb with the *total* score?
     });
 });
 
-export default Reducer;
+export { getData };
+
+export default gameReducer;

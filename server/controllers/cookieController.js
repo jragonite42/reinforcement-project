@@ -2,12 +2,13 @@
 const cookieController = {
   /**
    * Set the user ID in an 'ssid' cookie.
-   * @param _req - Express Request object
+   * @param req - Express Request object
    * @param res - Express Response object
    * @param next - Next middleware function
    */
-  setSSIDCookie: (_req, res, next) => {
-    const { user_id } = res.locals;
+  setSSIDCookie: (req, res, next) => {
+    console.log('inside cookieController');
+    const { userId } = res.locals;
 
     // Set the 'ssid' cookie for 12 hours
     res.cookie('ssid', userId, {
@@ -21,4 +22,4 @@ const cookieController = {
   },
 };
 
-export { cookieController };
+module.exports = cookieController;

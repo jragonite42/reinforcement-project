@@ -1,27 +1,30 @@
 const express = require('express');
+const path = require('path');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
-const dotenv = require('dotenv');
-dotenv.config();
+// const dotenv = require('dotenv');
+// dotenv.config();
 
 const app = express();
 const PORT = 3000;
 
 const userRouter = require('./routes/user');
 
-mongoose.connect(`${process.env.MONGO_URL}`, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
+// mongoose.connect(`${process.env.MONGO_URL}`, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+// mongoose.connection.once('open', () => {
+//   console.log('Connected to Database');
+// });
 //parsing any json data
 app.use(express.json());
 //parsing cookies
 app.use(cookieParser());
 
 app.use('/user', userRouter);
+
+app.use(express.static(path.resolve(__dirname, '../build')));
 
 //404 ErrorHandler
 app.use('*', (req, res) => {

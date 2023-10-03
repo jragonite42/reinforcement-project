@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import Reducer from './Reducer.js';
+import gameReducer from './Reducer.js';
 
-// const reducers = combineReducers({ cats: catReducer });
+const reducers = combineReducers({ games: gameReducer });
 
 export default reducers;
