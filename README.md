@@ -1,6 +1,6 @@
 # SpellSmith
 
-<div>
+<div align="center">
     <img src="https://i.imgur.com/drZFBvo.png">
 </div>
 <hr>
