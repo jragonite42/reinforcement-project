@@ -7,15 +7,16 @@ import './styles.css';
 function App() {
   return (
     <div className="backgroundContainer">
-      <div className="centerErrythan">
+      <div className="header">
         <h1>SpellSmith: Word Forge</h1>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/dashboard" element={<MainContainer />} />
-          </Routes>
-        </BrowserRouter>
+        <img src="https://i.imgur.com/NfJOKHv.png"></img>
       </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+          <Route path="/dashboard" element={<MainContainer />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }

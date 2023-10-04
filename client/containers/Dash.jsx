@@ -10,6 +10,7 @@ import {
 import Player from './Player.jsx';
 import Input from './Input.jsx';
 import '../stylesheets/dashboard.css';
+import Button from '@mui/material/Button';
 
 const Dash = () => {
   const currentWord = useSelector((state) => state.currentWord);
@@ -35,6 +36,7 @@ const Dash = () => {
       const getWordResponse = await fetch(getWordUrl, getWordOptions);
       let getWordResult = await getWordResponse.text();
       const word = JSON.parse(getWordResult).word;
+      console.log('The word is', word);
       dispatch(changeGameStatus());
       dispatch(newWord(word));
     } catch (error) {
@@ -70,19 +72,23 @@ const Dash = () => {
   return (
     <div className="gameElements">
       {!game ? (
-        <button
+        <Button
           id="startGame"
-          type="button"
+          variant="contained"
           className="button"
           onClick={startGame}
         >
           Start Game
-        </button>
+        </Button>
       ) : null}
-      {/* <p>The word is {currentWord}</p> */}
       {game ? <Player word={currentWord} /> : null}
-      {game ? <Input word={currentWord} /> : null}
-      {game ? <button onClick={checkGuess}>Check</button> : null}
+      <br></br>
+      {game ? <Input /> : null}
+      {game ? (
+        <Button variant="contained" onClick={checkGuess}>
+          Check
+        </Button>
+      ) : null}
     </div>
   );
 };

@@ -1,4 +1,9 @@
 .gameRules {
   text-align: center;
   font-family: Verdana, sans-serif;
+  padding: 10px;
+}
+
+.nav {
+  font-family: Verdana, sans-serif;
 }

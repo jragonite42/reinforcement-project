@@ -45,18 +45,6 @@ const SigninForm = () => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      {/*       
-      <input
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)} */}
       <Button variant="contained" type="submit">
         Sign In
       </Button>

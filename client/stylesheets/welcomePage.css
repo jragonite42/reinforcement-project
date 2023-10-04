@@ -1,11 +1,6 @@
 .welcome-container {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* min-height: 100vh;  */
   padding-top: 10px;
   padding-bottom: 10px;
-  /* min-height: 100vh; */
   background-color: white;
   text-align: center;
   padding-top: 10px;
@@ -21,5 +16,4 @@
   align-items: center;
   margin: 20px;
   text-align: center;
-  /* background-color: white; */
 }
