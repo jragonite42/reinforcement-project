@@ -12,6 +12,7 @@ const Nav = () => {
     <div>
       <p>Welcome, {name}!</p>
       <p>You have {score} points.</p>
+      <br></br>
     </div>
   );
 };
