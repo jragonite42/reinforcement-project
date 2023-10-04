@@ -10,3 +10,13 @@ export const newWord = createAction('game/newWord', (word) => ({
   payload: { newWord: word },
 }));
 // export const newWord = createAction(types.NEWWORD);
+
+export const signIn = (email, password) => ({
+  type: SIGN_IN,
+  payload: { email, password },
+});
+
+export const signUp = (email, password, name) => ({
+  type: SIGN_UP,
+  payload: { email, password, name },
+});

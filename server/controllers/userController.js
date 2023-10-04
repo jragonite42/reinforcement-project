@@ -62,8 +62,8 @@ userController.verifyUser = async (req, res, next) => {
 
 userController.signOut = async (req, res, next) => {
   try {
-    console.log(req.cookie);
-    if (req.cookie.SSID) {
+    console.log(req.cookies);
+    if (req.cookies.SSID) {
       res.clearCookie('SSID');
       console.log('Cookie cleared');
     } else {
