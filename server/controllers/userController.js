@@ -1,7 +1,7 @@
 const User = require('../models/userModel');
 const bcrypt = require('bcrypt');
 
-const userController = {}; //
+const userController = {};
 
 userController.create = async (req, res, next) => {
   try {
