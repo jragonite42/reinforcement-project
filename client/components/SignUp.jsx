@@ -1,50 +1,63 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useNavigate } from 'react-router-dom';
 import { signUpAsync } from '../reducers/authReducer';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      // Dispatch the signUpAsync action to sign up the user
+      //dispatch the signUpAsync action to sign up the user
       await dispatch(signUpAsync({ email, password, name }));
       // Handle successful signup, e.g., redirect to another page
       navigate('/dashboard');
     } catch (error) {
-      // Handle signup error, e.g., display an error message
+      //handle signup error, e.g., display an error message
       console.error(error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <TextField
+        id="outlined-basic"
+        sx={{ width: '100%', mb: 4 }}
+        label="username"
+        variant="outlined"
         type="email"
-        placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      <input
-        type="name"
-        placeholder="Name"
+      <TextField
+        id="outlined-basic"
+        sx={{ width: '100%', mb: 4 }}
+        label="name"
+        variant="outlined"
+        type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
+      <TextField
+        id="outlined-basic"
+        sx={{ width: '100%', mb: 4 }}
+        label="password"
+        variant="outlined"
         type="password"
-        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Sign Up</button>
+      <Button variant="contained" type="submit">
+        Sign Up
+      </Button>
     </form>
   );
 };

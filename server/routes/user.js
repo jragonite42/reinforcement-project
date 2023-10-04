@@ -27,7 +27,14 @@ router.post(
 router.post('/signout', userController.signOut, (req, res) => {
   // delete the cookies + sessions
   return res.status(200).send('User Signed Out!');
-  // return res.redirect('/signin');
+});
+
+router.post('/getUser', userController.getUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
+});
+
+router.post('/updateScore', userController.updateScore, (req, res) => {
+  return res.status(200).send('score updated');
 });
 
 module.exports = router;

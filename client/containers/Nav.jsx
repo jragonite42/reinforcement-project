@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-// import process from 'dotenv';
-// dotenv.config();
+import { fetchUser } from '../reducers/Reducer.js';
+import '../stylesheets/nav.css';
 
 const Nav = () => {
   const name = useSelector((state) => state.name);
   const score = useSelector((state) => state.score);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, []);
+
   return (
-    <div>
-      <p>Welcome, {name}!</p>
+    <div className="nav">
+      <h2>Welcome, {name}!</h2>
       <p>You have {score} points.</p>
-      <br></br>
+      <div className="gameRules">
+        <h4>Game Rules:</h4>
+        <p>
+          Click 'Start Game' and do your best to spell the word as heard in the
+          audio clip. <br></br>For every word you spell correctly, you will earn
+          1 point. For every word you misspell, you will lose 1 point. Max 3
+          tries per word.
+        </p>
+        <p>Happy spelling!</p>
+      </div>
     </div>
   );
 };

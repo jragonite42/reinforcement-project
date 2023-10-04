@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateGuess } from '../actions/actions.js';
+import TextField from '@mui/material/TextField';
 
-const Input = (props) => {
-  const { word } = props;
+const Input = () => {
   const userInput = useSelector((state) => state.userInput);
   const dispatch = useDispatch();
 
@@ -16,12 +16,13 @@ const Input = (props) => {
     <div>
       <label htmlFor="guess">Input your guess below:</label>
       <br></br>
-      <input
+      <TextField
         id="guess"
+        variant="outlined"
         onChange={handleInputChange}
         value={userInput}
         type="text"
-      ></input>
+      ></TextField>
     </div>
   );
 };

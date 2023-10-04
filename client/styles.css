@@ -1,6 +1,23 @@
-/* @import './stylesheets/catdisplay.css';
-@import './stylesheets/navbar.css'; */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
 
-/* body {
-  margin: 0;
-} */
+h1 {
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  color: white;
+}
+
+.backgroundContainer {
+  padding: 0px;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: linear-gradient(to bottom, #f7941d, #ffd93b);
+}

@@ -11,11 +11,9 @@ userController.create = async (req, res, next) => {
       return res.status(400).json('Missing values!');
     }
     const checkEmailExists = await User.findOne({ email });
-    console.log('checkEmailExists', checkEmailExists);
     if (!checkEmailExists) {
       const salt = await bcrypt.genSalt(10);
       const hashedPassword = await bcrypt.hash(password, salt);
-      console.log('afterhashedPassword');
       const user = await User.create({
         email,
         name,
@@ -62,7 +60,6 @@ userController.verifyUser = async (req, res, next) => {
 
 userController.signOut = async (req, res, next) => {
   try {
-    console.log(req.cookies);
     if (req.cookies.SSID) {
       res.clearCookie('SSID');
       console.log('Cookie cleared');
@@ -75,6 +72,52 @@ userController.signOut = async (req, res, next) => {
       log: 'An error was caught in userController.signOut', //
       status: 500,
       message: { err: 'An error occured during signout' }, //
+    });
+  }
+};
+
+userController.getUser = async (req, res, next) => {
+  try {
+    const id = req.cookies.SSID;
+    if (!id) {
+      return res.status(400).json('Missing cookies!');
+    }
+    const user = await User.findOne({ _id: id });
+    if (!user) {
+      return res.status(400).json('User not found');
+    } else {
+      res.locals.user = user;
+      return next();
+    }
+  } catch (e) {
+    return next({
+      log: 'An error was caught in userController.getUser', //
+      status: 500,
+      message: { err: 'An error occured while retrieving user information' }, //
+    });
+  }
+};
+
+userController.updateScore = async (req, res, next) => {
+  try {
+    const id = req.cookies.SSID;
+    if (!id) {
+      return res.status(400).json('Missing cookies!');
+    }
+    const user = await User.findOneAndUpdate(
+      { _id: id },
+      { totalPoints: req.body.score }
+    );
+    if (!user) {
+      return res.status(400).json('User not found');
+    } else {
+      return next();
+    }
+  } catch (e) {
+    return next({
+      log: 'An error was caught in userController.getUser', //
+      status: 500,
+      message: { err: 'An error occured while retrieving user information' }, //
     });
   }
 };
