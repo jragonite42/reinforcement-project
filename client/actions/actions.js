@@ -16,3 +16,13 @@ export const updateGuess = createAction('game/newGuess', (guess) => ({
 export const incrementTries = createAction(types.INCREMENTTRIES);
 export const resetTries = createAction(types.RESETTRIES);
 // export const newWord = createAction(types.NEWWORD);
+
+export const signIn = (email, password) => ({
+  type: SIGN_IN,
+  payload: { email, password },
+});
+
+export const signUp = (email, password, name) => ({
+  type: SIGN_UP,
+  payload: { email, password, name },
+});

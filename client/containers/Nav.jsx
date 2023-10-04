@@ -12,10 +12,6 @@ const Nav = () => {
     <div>
       <p>Welcome, {name}!</p>
       <p>You have {score} points.</p>
-
-      <div>
-        <button> Logout </button>
-      </div>
       <br></br>
     </div>
   );
