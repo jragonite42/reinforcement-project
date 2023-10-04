@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 
 const Player = (props) => {
   const [audioBlob, setAudioBlob] = useState(null);
   const { word } = props;
   useEffect(() => {
-    // Function to convert ReadableStream to Blob
+    //function to convert ReadableStream to Blob
     async function streamToBlob(stream) {
       const reader = stream.getReader();
       const chunks = [];
@@ -19,7 +18,7 @@ const Player = (props) => {
       return new Blob(chunks);
     }
 
-    // Fetch the audio data as a ReadableStream
+    //fetch the audio data as a ReadableStream
     const textToSpeechUrl = `https://voicerss-text-to-speech.p.rapidapi.com/?key=f23ce96978664e71bfeb71fb62e63b06`;
     const textToSpeechOptions = {
       method: 'POST',

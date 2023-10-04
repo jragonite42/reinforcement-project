@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {
   newWord,
@@ -9,8 +9,7 @@ import {
 } from '../actions/actions.js';
 import Player from './Player.jsx';
 import Input from './Input.jsx';
-// import { fetchCat } from '../reducers/catReducer.js';
-// reducers we use hwere
+import '../stylesheets/dashboard.css';
 
 const Dash = () => {
   const currentWord = useSelector((state) => state.currentWord);
@@ -18,6 +17,7 @@ const Dash = () => {
   const game = useSelector((state) => state.game);
   const numTries = useSelector((state) => state.numTries);
   const score = useSelector((state) => state.score);
+
   const dispatch = useDispatch();
 
   const startGame = async () => {
@@ -34,7 +34,6 @@ const Dash = () => {
     try {
       const getWordResponse = await fetch(getWordUrl, getWordOptions);
       let getWordResult = await getWordResponse.text();
-      console.log(getWordResult);
       const word = JSON.parse(getWordResult).word;
       dispatch(changeGameStatus());
       dispatch(newWord(word));
@@ -43,7 +42,6 @@ const Dash = () => {
     }
   };
   const checkGuess = async () => {
-    console.log(numTries);
     if (numTries < 2 && currentWord !== userInput) {
       dispatch(fail());
     } else if (currentWord === userInput) {
@@ -64,16 +62,13 @@ const Dash = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ score: score }),
       });
-      // const user = await res.json();
-      // return user;
-      console.log('updating score fetch request');
     } catch (err) {
       throw err;
     }
   };
 
   return (
-    <div>
+    <div className="gameElements">
       {!game ? (
         <button
           id="startGame"
@@ -84,7 +79,7 @@ const Dash = () => {
           Start Game
         </button>
       ) : null}
-      <p>The word is {currentWord}</p>
+      {/* <p>The word is {currentWord}</p> */}
       {game ? <Player word={currentWord} /> : null}
       {game ? <Input word={currentWord} /> : null}
       {game ? <button onClick={checkGuess}>Check</button> : null}

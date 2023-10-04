@@ -1,6 +1,27 @@
-/* @import './stylesheets/catdisplay.css';
-@import './stylesheets/navbar.css'; */
-
 /* body {
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: linear-gradient(to bottom, #ffd93b, #f7941d);
 } */
+
+h1 {
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  color: white;
+}
+
+.backgroundContainer {
+  padding: 0px;
+  margin: 0px;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: linear-gradient(to bottom, #f7941d, #ffd93b);
+}

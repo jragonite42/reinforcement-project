@@ -27,7 +27,6 @@ router.post(
 router.post('/signout', userController.signOut, (req, res) => {
   // delete the cookies + sessions
   return res.status(200).send('User Signed Out!');
-  // return res.redirect('/signin');
 });
 
 router.post('/getUser', userController.getUser, (req, res) => {

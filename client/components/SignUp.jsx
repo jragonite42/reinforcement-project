@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
 import { signUpAsync } from '../reducers/authReducer';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 const SignupForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,7 +28,34 @@ const SignupForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <TextField
+        id="outlined-basic"
+        sx={{ width: '100%', mb: 4 }}
+        label="username"
+        variant="outlined"
+        type="email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <TextField
+        id="outlined-basic"
+        sx={{ width: '100%', mb: 4 }}
+        label="name"
+        variant="outlined"
+        type="text"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+      />
+      <TextField
+        id="outlined-basic"
+        sx={{ width: '100%', mb: 4 }}
+        label="password"
+        variant="outlined"
+        type="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      {/* <input
         type="email"
         placeholder="Email"
         value={email}
@@ -43,8 +72,11 @@ const SignupForm = () => {
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-      />
-      <button type="submit">Sign Up</button>
+      /> */}
+      <Button variant="contained" type="submit">
+        Sign Up
+      </Button>
+      {/* <button type="submit">Sign Up</button> */}
     </form>
   );
 };
