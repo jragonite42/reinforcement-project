@@ -18,6 +18,7 @@ const initialState = {
   currentWord: null,
   userInput: null,
   // gameHistory: [],
+  numTries: 0,
 };
 
 const gameReducer = createReducer(initialState, (builder) => {
@@ -30,6 +31,8 @@ const gameReducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.fail, (state, action) => {
       // add to game history but thats not implemented
+      state.score--;
+      state.numTries++;
     })
     .addCase(actions.save, (state, action) => {
       // add to game history but thats not implemented
@@ -37,6 +40,7 @@ const gameReducer = createReducer(initialState, (builder) => {
     })
     .addCase(actions.changeGameStatus, (state, action) => {
       state.game ? (state.game = false) : (state.game = true);
+      state.numTries = 0;
     })
     .addCase(actions.updateGuess, (state, action) => {
       console.log('state.userInput:', state.userInput);

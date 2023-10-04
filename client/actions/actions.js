@@ -13,4 +13,6 @@ export const newWord = createAction('game/newWord', (word) => ({
 export const updateGuess = createAction('game/newGuess', (guess) => ({
   payload: { newGuess: guess },
 }));
+export const incrementTries = createAction(types.INCREMENTTRIES);
+export const resetTries = createAction(types.RESETTRIES);
 // export const newWord = createAction(types.NEWWORD);

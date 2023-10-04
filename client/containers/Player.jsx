@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
-const Player = ({ word }) => {
+const Player = (props) => {
   const [audioBlob, setAudioBlob] = useState(null);
-
+  const { word } = props;
   useEffect(() => {
     // Function to convert ReadableStream to Blob
     async function streamToBlob(stream) {
