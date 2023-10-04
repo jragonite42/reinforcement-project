@@ -1,19 +1,24 @@
 import * as actions from '../actions/actions.js';
 import { createReducer, createAsyncThunk } from '@reduxjs/toolkit';
 
-const getData = createAsyncThunk('' /*whatever the url*/, async () => {});
+const fetchUser = createAsyncThunk('user/fetchUser', async () => {
+  try {
+    const res = await fetch('/user/getUser', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+    });
+    // const res = await fetch('/user/getUser');
+    const user = await res.json();
+    return user;
+  } catch (err) {
+    throw err;
+  }
+});
 
-/*
-  email: { type: String, required: true },
-  name: { type: String, required: true },
-  password: { type: String, required: true },
-  totalPoints: { type: Number },
-  gameHistory: { type: Array },
-  */
 const initialState = {
   game: false, // false: game is not running, true; game is running
-  name: 'Woobae',
-  score: 100,
+  name: null,
+  score: 0,
   totalPoints: null,
   currentWord: null,
   userInput: null,
@@ -23,6 +28,13 @@ const initialState = {
 
 const gameReducer = createReducer(initialState, (builder) => {
   builder
+    .addCase(fetchUser.fulfilled, (state, action) => {
+      const { name, totalPoints } = action.payload;
+      console.log(name);
+      console.log(totalPoints);
+      state.name = name;
+      state.score = totalPoints;
+    })
     .addCase(actions.newWord, (state, action) => {
       state.currentWord = action.payload.newWord;
     })
@@ -49,6 +61,6 @@ const gameReducer = createReducer(initialState, (builder) => {
     });
 });
 
-export { getData };
+export { fetchUser };
 
 export default gameReducer;

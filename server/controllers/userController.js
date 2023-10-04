@@ -79,4 +79,54 @@ userController.signOut = async (req, res, next) => {
   }
 };
 
+userController.getUser = async (req, res, next) => {
+  try {
+    const id = req.cookies.SSID;
+    console.log('id from cookie', id);
+    if (!id) {
+      return res.status(400).json('Missing cookies!');
+    }
+    const user = await User.findOne({ _id: id });
+    console.log('user :', user);
+    if (!user) {
+      return res.status(400).json('User not found');
+    } else {
+      res.locals.user = user;
+      return next();
+    }
+  } catch (e) {
+    return next({
+      log: 'An error was caught in userController.getUser', //
+      status: 500,
+      message: { err: 'An error occured while retrieving user information' }, //
+    });
+  }
+};
+
+userController.updateScore = async (req, res, next) => {
+  console.log('inside userController.updateScore');
+  try {
+    const id = req.cookies.SSID;
+    console.log('id from cookie', id);
+    if (!id) {
+      return res.status(400).json('Missing cookies!');
+    }
+    const user = await User.findOneAndUpdate(
+      { _id: id },
+      { totalPoints: req.body.score }
+    );
+    if (!user) {
+      return res.status(400).json('User not found');
+    } else {
+      return next();
+    }
+  } catch (e) {
+    return next({
+      log: 'An error was caught in userController.getUser', //
+      status: 500,
+      message: { err: 'An error occured while retrieving user information' }, //
+    });
+  }
+};
+
 module.exports = userController; //

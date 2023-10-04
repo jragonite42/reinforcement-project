@@ -17,6 +17,7 @@ const Dash = () => {
   const userInput = useSelector((state) => state.userInput);
   const game = useSelector((state) => state.game);
   const numTries = useSelector((state) => state.numTries);
+  const score = useSelector((state) => state.score);
   const dispatch = useDispatch();
 
   const startGame = async () => {
@@ -46,14 +47,29 @@ const Dash = () => {
     if (numTries < 2 && currentWord !== userInput) {
       dispatch(fail());
     } else if (currentWord === userInput) {
+      alert(`You got it right! The word was ${currentWord}!`);
       dispatch(pass());
       dispatch(changeGameStatus());
     } else if (numTries === 2) {
-      alert(`The word was ${currentWord}!`);
+      alert(`Better luck next time. The word was ${currentWord}!`);
       dispatch(fail());
       dispatch(changeGameStatus());
     }
     dispatch(updateGuess(''));
+
+    //update user's score in database
+    try {
+      const res = await fetch('/user/updateScore', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ score: score }),
+      });
+      // const user = await res.json();
+      // return user;
+      console.log('updating score fetch request');
+    } catch (err) {
+      throw err;
+    }
   };
 
   return (
