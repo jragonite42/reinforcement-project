@@ -42,7 +42,7 @@ This app harnesses the power of Redux. Logo was created using elements from Canv
 
 ## Contributors
 
-**Chris Le** | [LinkedIn](https://www.linkedin.com/in/chrisle96/) | [GitHub](https://github.com/dragblas)
-**Daniel (Jung Tae) Lee** | [LinkedIn](https://www.linkedin.com/in/jungtaelee/) | [GitHub](https://github.com/jungtaelee0128)
-**Tiffany Wong** | [LinkedIn](https://www.linkedin.com/in/tiffanywong149/) | [GitHub](https://github.com/twong-cs)
-**Woobae Kim** | [LinkedIn](https://www.linkedin.com/in/woobaekim/) | [GitHub](https://github.com/woobaekim)
+- **Chris Le** | [LinkedIn](https://www.linkedin.com/in/chrisle96/) | [GitHub](https://github.com/dragblas)
+- **Daniel (Jung Tae) Lee** | [LinkedIn](https://www.linkedin.com/in/jungtaelee/) | [GitHub](https://github.com/jungtaelee0128)
+- **Tiffany Wong** | [LinkedIn](https://www.linkedin.com/in/tiffanywong149/) | [GitHub](https://github.com/twong-cs)
+- **Woobae Kim** | [LinkedIn](https://www.linkedin.com/in/woobaekim/) | [GitHub](https://github.com/woobaekim)
